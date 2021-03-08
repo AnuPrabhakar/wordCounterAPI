@@ -15,11 +15,8 @@ public class SpringBootSecurityConfiguration extends WebSecurityConfigurerAdapte
 	}
 
 	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		/*
-		 * http .authorizeRequests() .antMatchers("/**").hasAnyRole("USER") .and()
-		 * .formLogin().loginPage("/login").permitAll();
-		 */
-		http.csrf().disable();
+	public void configure(HttpSecurity http) throws Exception {	
+		 http.csrf().disable().authorizeRequests().anyRequest().authenticated()
+		.and().httpBasic();
 	}
 }
